@@ -33,6 +33,8 @@ services:
     unomaha_utils:
         image: unomaha_utils
         restart: unless-stopped
+        volumes:
+            - ./unomaha_utils_wordclouds:/unomaha_utils/data/UU_WORDCLOUDS
         ports:
             - 5566:5566
 
