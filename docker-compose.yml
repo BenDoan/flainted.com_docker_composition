@@ -1,43 +1,5 @@
 version: '2'
 services:
-    jabawiki:
-        image: jabawiki
-        restart: unless-stopped
-        volumes:
-            - ./jabawiki_data:/tmp/jabawiki
-        ports:
-            - 8080:8080
-    lists:
-        image: lists
-        restart: unless-stopped
-        volumes:
-            - ./list_data/lists:/lists/data
-            - ./list_data/config.json:/lists/config.json
-        ports:
-            - 8081:8081
-        entrypoint:
-            - "gunicorn"
-            - "-b 0.0.0.0:8081"
-            - "--error-logfile=-"
-            - "list_server:app"
-
-    debt:
-        image: debt
-        restart: unless-stopped
-        volumes:
-            - ./debt_data/debt.csv:/debt/debt.csv
-            - ./debt_data/users.csv:/debt/users.csv
-        ports:
-            - 5005:5005
-
-    unomaha_utils:
-        image: unomaha_utils
-        restart: unless-stopped
-        volumes:
-            - ./unomaha_utils_wordclouds:/unomaha_utils/data/UU_WORDCLOUDS
-        ports:
-            - 5566:5566
-
     nginx:
         image: nginx
         restart: unless-stopped
